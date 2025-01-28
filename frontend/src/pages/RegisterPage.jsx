@@ -10,7 +10,7 @@ const RegisterPage = () => {
         email: '',
         password: ''
     });
-
+    const [isLoading, setIsLoading] = useState(false);
     const naviate = useNavigate()
 
     const handleChange = (e) => {
@@ -28,7 +28,7 @@ const RegisterPage = () => {
         if (!name || !email || !password) {
             return toast.error("Please Fill all the details")
         }
-
+        setIsLoading(true);
         try {
             const url = (`${BackendUrl}/signup`);
             const response = await fetch(url, {
@@ -59,6 +59,8 @@ const RegisterPage = () => {
 
         } catch (error) {
             toast.error(error)
+        } finally {
+            setIsLoading(false);
         }
 
     };
@@ -122,8 +124,11 @@ const RegisterPage = () => {
                     <button
                         type="submit"
                         className="w-full bg-blue-600 text-white py-2 mt-3 rounded-lg hover:bg-blue-600/80 transition cursor-pointer"
+                        disabled={isLoading}
                     >
-                        Register
+
+                        {isLoading ? 'Registering...' : 'Register'}
+                        
                     </button>
 
                     <p className='text-sm text-center pt-3'>Already have an account? <Link to={"/login"} className='hover:underline hover:text-blue-500'>Login</Link></p>

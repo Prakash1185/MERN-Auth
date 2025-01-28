@@ -12,6 +12,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
         password: ''
     });
 
+    const [loginLoading, setLoginLoading] = useState(false);
 
 
     const navigate = useNavigate()
@@ -31,7 +32,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
         if (!email || !password) {
             return toast.error("Please fill all the details")
         }
-
+        setLoginLoading(true)
         try {
 
             const url = (`${BackendUrl}/login`);
@@ -63,6 +64,8 @@ const LoginPage = ({ setIsLoggedIn }) => {
 
         } catch (error) {
             toast.error(error)
+        } finally {
+            setLoginLoading(false)
         }
 
     };
@@ -110,8 +113,10 @@ const LoginPage = ({ setIsLoggedIn }) => {
                     <button
                         type="submit"
                         className="w-full bg-blue-600 text-white py-2 mt-3 rounded-lg hover:bg-blue-500 transition"
+                        disabled={loginLoading}
                     >
-                        Login
+                        {loginLoading ? 'Logging in...' : 'Login'}
+
                     </button>
 
                     <p className='text-sm text-center pt-5'>Don't have an account? <Link to={"/signup"} className='hover:underline hover:text-blue-500'>Signup</Link></p>
