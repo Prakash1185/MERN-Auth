@@ -1,23 +1,18 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react';
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-4xl font-bold mb-8 text-purple-400">Welcome to Our App</h1>
-      <p className="text-xl mb-8 text-center max-w-2xl">
-        Experience the future of digital interaction with our cutting-edge platform. Join us today and unlock a world of
-        possibilities.
-      </p>
-      <Link
-        to="/auth"
-        className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-      >
-        Get Started
-      </Link>
+    <div className="pt-40 flex items-center justify-center px-4">
+      <div className="text-center">
+        <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-400 mb-6">
+          Welcome to Our Platform
+        </h1>
+        <p className="text-lg  text-gray-600">
+          Join us to explore endless possibilities. Discover, connect, and grow with our community.
+        </p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
-
+export default LandingPage;
